@@ -8,6 +8,9 @@ from sklearn.metrics.pairwise import cosine_similarity
 def article_to_string(url):
     """
     Process the body of the article from the given url
+    it will return with all the text on the page
+
+    if it is an invalid url "404" will be the response
     """
     #NOTE: this does need to be chagned for different ways different sites lay
     # the website out.
@@ -23,9 +26,12 @@ def article_to_string(url):
     soup = BeautifulSoup(r.text, 'html.parser')
     # find all the p tages int the article tag. 
    
+    # NOTE: This is not the right way to fix different website layouts. This
+    # will also get the recomendations of other articles mixing up the results
+    # maybe...
     return soup.get_text()
 
-
+    """
     p = soup.article.find_all('p')
     finalString = "" 
     for s in p:
@@ -37,7 +43,7 @@ def article_to_string(url):
             # NOTE: This may need to changed to make the recomendations work better
             pass
     return finalString
-
+    """
 
 # Testing
 if __name__ == "__main__":
